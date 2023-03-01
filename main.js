@@ -8,8 +8,15 @@ DD.MM.YYYY a vrátí objekt s jednotlivýnu částmi zadaného data. Příklad p
 > parseDate('06.04.2021')
 { day: 6, month: 4, year: 2021 }
 */
-
-
+let datumZadanyUzivatelem = prompt("Zadej datum")
+const parseData = (datum)=>{
+ return {
+    day: Number(datum.slice(0, 2)),
+    month: Number(datum.slice(3, 5)),
+    year: Number(datum.slice(6)),
+}
+}
+console.log(parseData(datumZadanyUzivatelem))
 /*
 Formátování data
 Bez použití knihovny dayjs napište funkci formatDate, která na vstupu obdrží objekt představující datum v 
@@ -23,6 +30,16 @@ Funkce vrátí řetězec představující datum ve formátu DD.MM.YYYY. Příkla
 V tomto cvičení se vám jistě bude hodit metoda padStart. Zkuste také uvnitř těla funkce použít destrukturování.
 */
 
+const formatDate = ({ day, month, year })=>{
+    const datum = {
+        den:String(day).padStart(2,"0"),
+        mesic:String(month).padStart(2,"0"),
+        rok:String(year)
+    }
+    const {den,mesic,rok} = datum;
+    return den+"."+mesic+"."+rok;
+}
+console.log(formatDate({ day: 6, month: 4, year: 2021 }))
 /*
 
 Python zaokrouhlování
@@ -40,6 +57,22 @@ naopak 2.5 se zaokrouhlí na 2.
 V tomto cvičení se vám může hodit funkce Math.trunc, která umí odříznout desetinnou část čísla.
 */
 
+const round = (cislo) =>{
+    const celaCast = Math.trunc(cislo);
+    const desetinaCast = cislo-celaCast;
+    if(desetinaCast>0.5){
+       return celaCast+1
+    }else if (desetinaCast<0.5) {
+        return celaCast
+    }else if (desetinaCast===0.5){
+        if (celaCast % 2 === 0) {
+			return celaCast
+		} else {
+			return celaCast + 2* desetinaCast
+		}        
+    } 
+}
+console.log(round(3.5))
 
 /*
 
@@ -49,3 +82,23 @@ Zajistěte, aby funkce správně fungovala i pro záporná čísla.
 Tedy například -3.5 se zaokrouhlí na -4, naopak -2.5 se zaokrouhlí na -2.
 
 */
+
+const roundBonus = (cislo) =>{
+    const celaCast = Math.trunc(cislo);
+    const desetinaCast = cislo-celaCast;
+    if(Math.abs(desetinaCast)>0.5){
+       return celaCast+1
+    }else if (0<Math.abs(desetinaCast)<0.5) {
+        return celaCast
+    }else if (Math.abs(desetinaCast)===0.5){
+        if (celaCast % 2 === 0) {
+			return celaCast
+		} else {
+			return celaCast+ 2* desetinaCast
+		}        
+    } 
+    
+}
+console.log(roundBonus(-2.5))
+
+ 
