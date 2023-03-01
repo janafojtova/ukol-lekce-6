@@ -8,6 +8,7 @@ DD.MM.YYYY a vrátí objekt s jednotlivýnu částmi zadaného data. Příklad p
 > parseDate('06.04.2021')
 { day: 6, month: 4, year: 2021 }
 */
+
 let datumZadanyUzivatelem = prompt("Zadej datum")
 const parseData = (datum)=>{
  return {
